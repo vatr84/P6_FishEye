@@ -6,7 +6,7 @@ function photographerTemplate(data) {
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
         const link = document.createElement( 'a' );
-        link.href = `photographer.html?id=${id}`;
+        link.href = `../../photographer.html?id=${id}`;
 
         const imgContainer = document.createElement( 'div' );
         imgContainer.classList.add( 'photographer_card' );
