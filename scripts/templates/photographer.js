@@ -12,6 +12,8 @@ function photographerTemplate(data) {
         imgContainer.classList.add( 'photographer_card' );
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
+        img.setAttribute("alt", `Portrait of ${name}, photographer from ${city}, ${country}`);
+
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
         const h3 = document.createElement( 'h3' );
