@@ -17,7 +17,7 @@ function createImage(src, alt) {
 function createLink(href, ariaLabel) {
     const link = document.createElement('a');
     link.href = href;
-    link.ariaLabel = ariaLabel;
+    link.setAttribute('aria-label', ariaLabel);
     return link;
 }
 
