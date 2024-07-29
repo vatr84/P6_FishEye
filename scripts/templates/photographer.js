@@ -29,10 +29,10 @@ function photographerTemplate(data) {
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
 
-        /*const link = document.createElement( 'a' );
+        const link = document.createElement( 'a' );
         link.href = `../../photographer.html?id=${id}`;
-        link.setAttribute('aria-label', `View profile of photographer ${name}`);*/
-        const link = createLink(`../../photographer.html?id=${id}`, `View profile of photographer ${name}`);
+        link.setAttribute('aria-label', `View profile of photographer ${name}`);
+        /*const link = createLink(`../../photographer.html?id=${id}`, `View profile of photographer ${name}`);*/
 
 
         const imgContainer = document.createElement( 'div' );
