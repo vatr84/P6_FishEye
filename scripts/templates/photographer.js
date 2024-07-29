@@ -30,7 +30,7 @@ function photographerTemplate(data) {
         const article = document.createElement( 'article' );
 
         const link = document.createElement( 'a' );
-        link.href = `../photographer.html?id=${id}`;
+        link.href = `photographer.html?id=${id}`;
         link.setAttribute('aria-label', `View profile of photographer ${name}`);
         /*const link = createLink(`../../photographer.html?id=${id}`, `View profile of photographer ${name}`);*/
 
