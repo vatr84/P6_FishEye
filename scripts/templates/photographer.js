@@ -1,3 +1,10 @@
+// Récupère le tableau depuis le fichier JSON
+async function getPhotographers() {     
+    const reponse = await fetch("data/photographers.json");
+    const tableau = await reponse.json();
+    return tableau;
+}
+
 // Fonction pour créer un texte
 function createText(tag, text) {
     const element = document.createElement(tag);
@@ -26,46 +33,35 @@ function photographerTemplate(data) {
 
     const picture = `assets/photographers/${portrait}`;
 
-    function getUserCardDOM() {
+    const link = createLink(`photographer.html?id=${id}`, `View profile of photographer ${name}`);
+
+    const imgContainer = document.createElement( 'div' );
+    imgContainer.classList.add( 'photographer_card' );
+
+    const img = createImage(picture, `Portrait of ${name}, photographer from ${city}, ${country}`);
+    const h2 = createText('h2', name);
+    const h3 = createText('h3', `${city}, ${country}`);
+    const tag = createText('p', tagline);
+    const prix = createText('p', `${price}€/jour`);
+
+    function getUserCardDOM(page) {
         const article = document.createElement( 'article' );
-
-        /*const link = document.createElement( 'a' );
-        link.href = `photographer.html?id=${id}`;
-        link.setAttribute('aria-label', `View profile of photographer ${name}`);*/
-        const link = createLink(`photographer.html?id=${id}`, `View profile of photographer ${name}`);
-
-
-        const imgContainer = document.createElement( 'div' );
-        imgContainer.classList.add( 'photographer_card' );
-
-       /*const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
-        img.setAttribute("alt", `Portrait of ${name}, photographer from ${city}, ${country}`);*/
-        const img = createImage(picture, `Portrait of ${name}, photographer from ${city}, ${country}`);
-
-        /* const h2 = document.createElement( 'h2' );
-        h2.textContent = name;*/
-        const h2 = createText('h2', name);
-
-       /*const h3 = document.createElement( 'h3' );
-        h3.textContent = `${city}, ${country}`;*/
-        const h3 = createText('h3', `${city}, ${country}`);
-
-        /*const tag = document.createElement( 'p' );
-        tag.textContent = tagline;*/
-        const tag = createText('p', tagline);
-
-        /*const prix = document.createElement( 'p' );
-        prix.textContent = `${price}€/jour`;*/
-        const prix = createText('p', `${price}€/jour`);
-
-        article.appendChild(link);
-
         imgContainer.appendChild(img);
 
-        link.append(imgContainer, h2, h3, tag, prix);
+        if (page==="index") {
+            article.appendChild(link);
+            link.append(imgContainer, h2, h3, tag, prix);
+            return (article);
+        } else {
+            const photographerHeader = document.querySelector(".photograph-header");
+            photographerHeader.append(h2, h3, tag, imgContainer);
 
-        return (article);
+            prix.classList.add('price');
+            const priceLikesContainer = document.querySelector('.price-likes');
+            priceLikesContainer.appendChild(prix);
+
+            return (photographerHeader);
+        }
     }
     return { name, picture, getUserCardDOM }
 }
