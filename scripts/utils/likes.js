@@ -1,4 +1,3 @@
-
 export function calculateTotalLikes() {
     const likeElements = document.querySelectorAll('.photo-likes');
     let totalLikes = 0;

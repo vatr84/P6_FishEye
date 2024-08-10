@@ -1,11 +1,6 @@
 // lightbox.js
 import { createMedia } from './media.js';
-
-
 import { photographerMedia as photographerPhotos } from '../pages/photographer.js';
-
-
-
 
 // Variables globales du DOM
 const imageLightbox = document.getElementById('image-lightbox');
@@ -26,12 +21,10 @@ export function openLightbox(mediaData) {
   document.addEventListener('keydown', handleKeyDown);
 }
 
-
 function closeImageLightbox() {
   imageLightbox.style.display = 'none';
   overlay.style.display = 'none';
 }
-
 
 function loadCurrentImage() {
   lightboxContent.innerHTML = '';

@@ -6,7 +6,6 @@ const dialog = document.querySelector('.modal-dialog');
 const content = document.querySelector('.modal-content');
 const overlay = document.querySelector('.overlay');
 
-
 // Fonction pour ouvrir la modale
 function displayModal() {
   modal.style.display = 'block';
@@ -38,7 +37,6 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
-
 const form = document.getElementById('contact-form');
 
 // Empêche la soumission du formulaire et lance la validation au clic sur le bouton de soumission
@@ -46,9 +44,6 @@ form.addEventListener('submit', (e) => {
   e.preventDefault(); 
    validate();
   });
-
-
-
 
 function validateName(input) {
   const regex = /^[A-Za-zÀ-ÖØ-öø-ÿ]{2,}$/;
@@ -72,7 +67,6 @@ function validateEmail(input) {
   }
 }
 
-
 function validateMessage(input) {
   if (input.value === "") {
     input.classList.add("field-error");
@@ -82,8 +76,6 @@ function validateMessage(input) {
     return true;
   }
 }
-
-
 
 const firstNameInput = document.getElementById("first-name");
 const lastNameInput = document.getElementById("last-name");

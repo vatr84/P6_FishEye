@@ -80,34 +80,6 @@ function createRenderMedia(photos) {
       mediaCard.appendChild(video);
     }
 
-/*
-    const photoInfo = document.createElement('div');
-    photoInfo.classList.add('photo-info');
-    mediaCard.appendChild(photoInfo);
-
-    const title = document.createElement('h3');
-    title.textContent = `${media.title}`;
-    photoInfo.appendChild(title);
-
-    const likesContainer = document.createElement('div');
-    likesContainer.classList.add('likes-container');
-
-    const likes = document.createElement('p');
-    likes.textContent = `${media.likes}`;
-    likes.classList.add('photo-likes');
-
-    likesContainer.appendChild(likes);
-    photoInfo.appendChild(likesContainer);
-
-    const heart = createHeartIcon();
-    likesContainer.appendChild(heart);
-
-    // Event listener for clicking the heart icon
-    heart.addEventListener('click', () => likeMedia(media.id, mediaCard, likes, heart));
-    // Render the media card
-    photoGrid.appendChild(mediaCard);
-*/    
-
   const photoInfo = document.createElement('div');
   photoInfo.classList.add('photo-info');
 

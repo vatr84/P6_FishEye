@@ -21,8 +21,6 @@ function toggleDropdown() {
   dropdownIcon.style.transform = options.style.display === 'block' ? 'rotate(180deg)' : 'rotate(0)';
 }
 
-
-
 // Fonction pour gérer la sélection d'une option
 function selectOption(optionId) {
   // Obtenir l'option précédemment sélectionnée
