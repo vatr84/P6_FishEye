@@ -59,23 +59,27 @@ function createRenderMedia(photos) {
     const mediaCard = document.createElement('div');
     mediaCard.classList.add('photo');
 
+    function mediaTabClick(media) {
+      media.setAttribute('tabindex', '0');
+      media.addEventListener('click', () => openLightbox(mediaData));
+      media.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          openLightbox(mediaData);
+        }
+      });
+    }
+
     if (media.type === 'image') {
       // Image
       const image = document.createElement('img');
       image.src = media.url;
       image.alt = media.title;
-      
-      image.setAttribute('tabindex', '0');
-      image.addEventListener('click', () => openLightbox(mediaData));
-      image.addEventListener('keydown', (event) => {
-        if (event.key === 'Enter') {
-          openLightbox(mediaData);
-        }
-      });
+      mediaTabClick(image);
       mediaCard.appendChild(image);
     } else if (media.type === 'video') {
       // Video
       const video = createVideoElement(media.url, media.title);
+      mediaTabClick(video);
       mediaCard.appendChild(video);
     }
 
