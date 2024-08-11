@@ -2,16 +2,43 @@
 const modal = document.getElementById('contact_modal');
 const openModalBtn = document.querySelector('.contact_button');
 const closeModalBtn = document.querySelector('.modal-close-btn');
-const dialog = document.querySelector('.modal-dialog');
-const content = document.querySelector('.modal-content');
 const overlay = document.querySelector('.overlay');
+const firstName = document.getElementById('first-name');
+
+// Fonction pour garder le focus à l'intérieur de la modale
+function trapFocus(element) {
+  const focusableEls = element.querySelectorAll('a[href], button, textarea, input, select, [tabindex]:not([tabindex="-1"])');
+  const firstFocusableEl = focusableEls[0];  
+  const lastFocusableEl = focusableEls[focusableEls.length - 1];
+
+  element.addEventListener('keydown', function(e) {
+      const isTabPressed = (e.key === 'Tab' || e.keyCode === 9);
+
+      if (!isTabPressed) {
+          return;
+      }
+
+      if (e.shiftKey) { // Si l'utilisateur presse Shift + Tab
+          if (document.activeElement === firstFocusableEl) {
+              lastFocusableEl.focus();
+              e.preventDefault();
+          }
+      } else { // Si l'utilisateur presse Tab seulement
+          if (document.activeElement === lastFocusableEl) {
+              firstFocusableEl.focus();
+              e.preventDefault();
+          }
+      }
+  });
+}
 
 // Fonction pour ouvrir la modale
 function displayModal() {
   modal.style.display = 'block';
   modal.setAttribute('aria-hidden', 'false');
   openModalBtn.setAttribute('aria-expanded', 'true');
-  closeModalBtn.focus();
+  firstName.focus();
+  trapFocus(modal);
   document.body.style.overflow = 'hidden';
   overlay.style.display = 'block';
 }
@@ -123,3 +150,5 @@ messageInput.addEventListener("input", function() {
       return false;
     }
   }
+
+export { trapFocus, openModalBtn };

@@ -1,6 +1,7 @@
 // lightbox.js
 import { createMedia } from './media.js';
 import { photographerMedia as photographerPhotos } from '../pages/photographer.js';
+import { trapFocus, openModalBtn } from './contactForm.js';
 
 // Variables globales du DOM
 const imageLightbox = document.getElementById('image-lightbox');
@@ -20,12 +21,15 @@ export function openLightbox(mediaData) {
   currentImageIndex = photographerPhotos.findIndex(item => item.id === mediaData.id);
   loadCurrentImage();
   document.addEventListener('keydown', handleKeyDown);
+  nextButton.focus();
+  trapFocus(imageLightbox);
 }
 
 function closeImageLightbox() {
   document.body.style.overflow = 'auto';
   imageLightbox.style.display = 'none';
   overlay.style.display = 'none';
+  openModalBtn.focus();
 }
 
 function loadCurrentImage() {
