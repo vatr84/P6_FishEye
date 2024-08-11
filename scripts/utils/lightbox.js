@@ -14,6 +14,7 @@ let currentImageIndex = 0;
 
 // Fonction pour ouvrir la lightbox avec les données du média
 export function openLightbox(mediaData) {
+  document.body.style.overflow = 'hidden';
   imageLightbox.style.display = 'block';
   overlay.style.display = 'block';
   currentImageIndex = photographerPhotos.findIndex(item => item.id === mediaData.id);
@@ -22,6 +23,7 @@ export function openLightbox(mediaData) {
 }
 
 function closeImageLightbox() {
+  document.body.style.overflow = 'auto';
   imageLightbox.style.display = 'none';
   overlay.style.display = 'none';
 }
