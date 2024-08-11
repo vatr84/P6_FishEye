@@ -33,6 +33,7 @@ class VideoMedia {
   createMediaElement() {
     const mediaElement = document.createElement('video');
     mediaElement.setAttribute('controls', ''); // Ajouter des contrôles vidéo
+    mediaElement.setAttribute('aria-label', `Video: ${this.title}`);
     const sourceElement = document.createElement('source');
     sourceElement.src = this.url;
     sourceElement.type = 'video/mp4';

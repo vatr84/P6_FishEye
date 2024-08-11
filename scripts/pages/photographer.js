@@ -13,12 +13,11 @@ const likedMedia = new Set();
 export let photographerMedia = [];
 
 // Fonction pour créer un élément vidéo
-function createVideoElement(src, alt) {
+function createVideoElement(src, title) {
   const video = document.createElement('video');
   video.src = src;
   video.type = 'video/mp4';
-  video.alt = alt;
-  video.controls = true;
+  video.setAttribute('aria-label', `Video: ${title}`);
   return video;
 }
 
