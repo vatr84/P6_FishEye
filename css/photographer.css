@@ -351,6 +351,7 @@ video {
     flex-direction: column;
     padding: 20px 35px 0 35px;
     margin: auto;
+    pointer-events: auto;
 }
 
 .overlay {
@@ -362,6 +363,11 @@ video {
     background: rgba(0, 0, 0, 0.7);
     z-index: 999;
     display: none;
+}
+
+.no-interaction {
+    pointer-events: none; 
+    user-select: none; 
 }
 
 .modal header {

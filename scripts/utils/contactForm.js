@@ -40,6 +40,7 @@ function displayModal() {
   firstName.focus();
   trapFocus(modal);
   document.body.style.overflow = 'hidden';
+  document.body.classList.add('no-interaction');
   overlay.style.display = 'block';
 }
 
@@ -49,6 +50,7 @@ function closeModal() {
   modal.setAttribute('aria-hidden', 'true');
   openModalBtn.setAttribute('aria-expanded', 'false');
   openModalBtn.focus();
+  document.body.classList.remove('no-interaction');
   document.body.style.overflow = 'auto';
   overlay.style.display = 'none';
 }
