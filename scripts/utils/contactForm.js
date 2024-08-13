@@ -126,31 +126,28 @@ messageInput.addEventListener("input", function() {
 });
 
 // Fonction principale de validation du formulaire
-  function validate() {
-    const firstNameValid = validateName(firstNameInput);
-    const lastNameValid = validateName(lastNameInput);
-    const emailValid = validateEmail(emailInput);
-    const messageValid = validateMessage(messageInput);
-
+function validate() {
+  const firstNameValid = validateName(firstNameInput);
+  const lastNameValid = validateName(lastNameInput);
+  const emailValid = validateEmail(emailInput);
+  const messageValid = validateMessage(messageInput);
   
-    const isValid =
-      firstNameValid &&
-      lastNameValid &&
-      emailValid &&
-      messageValid;
+  const isValid =
+    firstNameValid &&
+    lastNameValid &&
+    emailValid &&
+    messageValid;
 
-    if (isValid) {
-   console.log(
-        "First name: " + firstNameInput.value + "\n" +
-        "Last name: " + lastNameInput.value + "\n" +
-        "Email: " + emailInput.value + "\n" +
-        "Message: " + messageInput.value
-      );      
-      closeModal();
-      return true;
-    } else {
-      return false;
-    }
+  if (isValid) {
+  console.log(
+    "First name: " + firstNameInput.value + "\n" +
+    "Last name: " + lastNameInput.value + "\n" +
+    "Email: " + emailInput.value + "\n" +
+    "Message: " + messageInput.value
+  );      
+  closeModal();
+  return true;
+  } else {
+    return false;
   }
-
-export { trapFocus, openModalBtn };
+}

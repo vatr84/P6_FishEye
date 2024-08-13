@@ -1,7 +1,7 @@
 // lightbox.js
 import { createMedia } from './media.js';
 import { photographerMedia as photographerPhotos } from '../pages/photographer.js';
-import { trapFocus, openModalBtn } from './contactForm.js';
+import { trapFocus } from './trapFocus.js';
 
 // Variables globales du DOM
 const imageLightbox = document.getElementById('image-lightbox');
@@ -10,6 +10,7 @@ const closeLightboxButton = document.querySelector('.lightbox-close');
 const prevButton = document.querySelector('.lightbox-prev');
 const nextButton = document.querySelector('.lightbox-next');
 const lightboxContent = document.querySelector('.lightbox-content');
+const openModalBtn = document.querySelector('.contact_button');
 
 let currentImageIndex = 0;
 

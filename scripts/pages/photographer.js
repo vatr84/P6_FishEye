@@ -8,8 +8,9 @@ import { openLightbox } from '../utils/lightbox.js';
 const urlSearchParams = new URLSearchParams(window.location.search);
 // Extrait l'identifiant du photographe des paramètres de l'URL
 const photographerId = urlSearchParams.get('id');
-
+// Ensemble pour stocker les IDs des médias likés
 const likedMedia = new Set();
+// Tableau pour stocker les médias du photographe
 export let photographerMedia = [];
 
 // Fonction pour créer un élément vidéo
@@ -29,9 +30,9 @@ function likeMedia(mediaId, mediaCard, likesElement, heart) {
     const media = photographerMedia.find(media => media.id === mediaId);
     if (media) {
       media.likes += 1;
-      likedMedia.add(mediaId);
-      likesElement.textContent = `${media.likes}`;
-      heart.classList.add('liked'); 
+      likedMedia.add(mediaId);  // Ajoute le média aux médias likés
+      likesElement.textContent = `${media.likes}`;  // Met à jour le nombre de likes affiché
+      heart.classList.add('liked'); // Ajoute une classe pour indiquer que le média a été liké
       updateTotalLikes();
     }
   }
@@ -42,23 +43,23 @@ function createRenderMedia(photos) {
  
   // Vérifiez que photos est défini et est un tableau
   if (!Array.isArray(photos)) {
-    console.error("Les données des photos ne sont pas valides ou sont undefined.");
+    
     return;
   }
 
-  const photoGrid = document.querySelector('.photo-grid');
+  const photoGrid = document.querySelector('.photo-grid');  // Sélectionne l'élément contenant la grille de photos
   if (!photoGrid) {
     console.error("L'élément .photo-grid n'a pas été trouvé.");
     return;
   }
 
-  photoGrid.innerHTML = '';
+  photoGrid.innerHTML = ''; // Réinitialise la grille des photos
 
   photos.forEach(mediaData => {
     const media = createMedia(mediaData);
     const mediaCard = document.createElement('div');
     mediaCard.classList.add('photo');
-
+    // Fonction pour ajouter la gestion du clavier et du clic pour ouvrir la lightbox
     function mediaTabClick(media) {
       media.setAttribute('tabindex', '0');
       media.addEventListener('click', () => openLightbox(mediaData));
@@ -83,6 +84,7 @@ function createRenderMedia(photos) {
       mediaCard.appendChild(video);
     }
 
+  // Création des éléments pour afficher les informations du média
   const photoInfo = document.createElement('div');
   photoInfo.classList.add('photo-info');
 
@@ -95,9 +97,9 @@ function createRenderMedia(photos) {
 
   const likes = document.createElement('p');
   likes.textContent = media.likes;
-  likes.classList.add('photo-likes');
+  likes.classList.add('photo-likes'); // Affiche le nombre de likes
 
-  const heart = createHeartIcon();
+  const heart = createHeartIcon();  // Crée l'icône de cœur pour les likes
   heart.addEventListener('click', () => likeMedia(media.id, mediaCard, likes, heart));
 
   likesContainer.appendChild(likes);
@@ -111,7 +113,7 @@ function createRenderMedia(photos) {
 
 // Fonctions de tri
 function sortByPopularity(photos) {
-  return photos.sort((a, b) => b.likes - a.likes);
+  return photos.sort((a, b) => b.likes - a.likes);  // Trie par popularité (nombre de likes)
 }
 
 function sortByDate(photos) {
@@ -126,7 +128,7 @@ function sortByTitle(photos) {
 export async function sortPhotos(sortBy) {
 
   if (!Array.isArray(photographerMedia) || photographerMedia.length === 0) {
-    console.error("photographerMedia n'est pas défini ou est vide.");
+    
     return;
   }
 
@@ -143,13 +145,10 @@ export async function sortPhotos(sortBy) {
       sortedPhotos = sortByTitle(photographerMedia);
       break;
     default:
-
-      console.error("Critère de tri non reconnu : " + sortBy);
-    
       break;
   }
 
-  createRenderMedia(sortedPhotos);
+  createRenderMedia(sortedPhotos);  // Met à jour l'affichage des médias triés
 }
 
 // Fonction pour afficher les données d'un photographe
@@ -177,11 +176,12 @@ async function init(id) {
   const data = photographers.find(photographer => photographer.id === parseInt(id, 10));  // Trouve le photographe correspondant à l'identifiant fourni
   photographerMedia = media.filter(photo => photo.photographerId === parseInt(id));
     
-  displayData(data);                                                                      // Affiche les données du photographe trouvé
+  displayData(data);   // Affiche les données du photographe trouvé                                                                   // Affiche les données du photographe trouvé
 }
 
-init(photographerId);
+init(photographerId); // Appelle la fonction d'initialisation avec l'ID du photographe
 
+// Fonction pour créer une icône de cœur (SVG)
 function createHeartIcon() {
   const heart = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   heart.setAttribute('width', '21');
