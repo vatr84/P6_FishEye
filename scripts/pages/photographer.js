@@ -102,6 +102,15 @@ function createRenderMedia(photos) {
   const heart = createHeartIcon();  // Crée l'icône de cœur pour les likes
   heart.addEventListener('click', () => likeMedia(media.id, mediaCard, likes, heart));
 
+  // Assurer que l'élément est focusable
+  heart.setAttribute('tabindex', '0');
+  // Ajouter l'écouteur d'événement pour la touche "Enter"
+  heart.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      likeMedia(media.id, mediaCard, likes, heart);
+    }
+  });
+
   likesContainer.appendChild(likes);
   likesContainer.appendChild(heart);
   photoInfo.appendChild(likesContainer);
