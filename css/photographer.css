@@ -320,12 +320,12 @@ video {
 }
 
 .send-button {
-    font-size: 20px;
+    font-size: 1.125rem;
     font-weight: bold;
     color: white;
-    padding: 11px;
-    width: 170px;
-    height: 70px;
+    padding: 0.7rem;
+    width: 10.625rem;
+    height: 4.375rem;
     border: none;
     background-color: #901C1C;
     border-radius: 5px;
@@ -337,21 +337,104 @@ video {
 }
 
 
-.modal {
+#contact_modal {
+    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
-    height: 900px;
+    height: 90vh;
+    max-height: 950px;
+    width: 90vw;
+    max-width: 669px;
     border-radius: 5px;
     background-color: #DB8876;
-    width: 669px;
-    display: flex;
-    flex-direction: column;
-    padding: 20px 35px 0 35px;
-    margin: auto;
+    padding: 20px 35px;
+    box-sizing: border-box;
+    overflow-y: auto;
     pointer-events: auto;
+}
+
+/* Modal pour les petits écrans */
+@media (max-width: 767px) {
+    #contact_modal {
+        width: 95vw;
+        height: 95vh;
+        padding: 15px 20px;
+    }
+
+    .modal-header h2 {
+        font-size: 1.5rem;
+    }
+
+    form label {
+        font-size: 1.25rem;
+    }
+
+    form input, form textarea {
+        height: 2rem;
+        font-size: 0.9rem;
+    }
+
+    .send-button {
+        font-size: 1rem;
+        padding: 0.4rem;
+    }
+}
+
+/* Modal pour les écrans moyens */
+@media (min-width: 768px) and (max-width: 1023px) {
+    #contact_modal {
+        width: 80vw;
+        height: 85vh;
+        padding: 20px 30px;
+    }
+
+    .modal-header h2 {
+        font-size: 1.75rem;
+    }
+
+    form label {
+        font-size: 1.4rem;
+    }
+
+    form input, form textarea {
+        height: 2.25rem;
+        font-size: 1rem;
+    }
+
+    .send-button {
+        font-size: 1.1rem;
+        padding: 0.45rem;
+    }
+}
+
+/* Modal pour les écrans larges */
+@media (min-width: 1024px) {
+    #contact_modal {
+        width: 90vw;
+        height: 90vh;
+        padding: 20px 35px;
+    }
+
+    .modal-header h2 {
+        font-size: 2rem;
+    }
+
+    form label {
+        font-size: 1.5rem;
+    }
+
+    form input, form textarea {
+        height: 2.5rem;
+        font-size: 1.1rem;
+    }
+
+    .send-button {
+        font-size: 1.25rem;
+        padding: 0.5rem;
+    }
 }
 
 .overlay {
@@ -399,17 +482,15 @@ video {
     padding-top: 72px;
 }
 
-
 form {
     display: flex;
     width: 100%;
     flex-direction: column;
-    align-items: flex-start;
 }
 
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 2.25rem;
 }
 
 form div {
