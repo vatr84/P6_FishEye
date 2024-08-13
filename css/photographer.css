@@ -528,6 +528,8 @@ form input {
     position: absolute;
     right: 0;
     top: 15px;
+    background-color: transparent; 
+    border: none;
 }
 
 .lightbox-media {
