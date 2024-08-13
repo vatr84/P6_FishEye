@@ -22,7 +22,8 @@ export function openLightbox(mediaData) {
   currentImageIndex = photographerPhotos.findIndex(item => item.id === mediaData.id);
   loadCurrentImage();
   document.addEventListener('keydown', handleKeyDown);
-  nextButton.focus();
+  lightboxContent.setAttribute('tabindex', '0');
+  lightboxContent.focus();
   trapFocus(imageLightbox);
 }
 
@@ -52,16 +53,20 @@ function loadCurrentImage() {
 prevButton.addEventListener('click', () => {
   if (currentImageIndex > 0) {
     currentImageIndex--;
-    loadCurrentImage();
+  } else {
+    currentImageIndex = photographerPhotos.length - 1;
   }
+  loadCurrentImage();
 });
 
 // Gestion du clic sur le bouton suivant
 nextButton.addEventListener('click', () => {
   if (currentImageIndex < photographerPhotos.length - 1) {
     currentImageIndex++;
-    loadCurrentImage();
+  } else {
+    currentImageIndex = 0;
   }
+  loadCurrentImage();
 });
 
 // Gestion du clic sur le bouton de fermeture
@@ -84,15 +89,19 @@ function handleKeyDown(event) {
       // Gérer la touche flèche gauche (image précédente)
       if (currentImageIndex > 0) {
         currentImageIndex--;
-        loadCurrentImage();
+      } else {
+        currentImageIndex = photographerPhotos.length - 1;
       }
+      loadCurrentImage();
       break;
     case 'ArrowRight':
       // Gérer la touche flèche droite (image suivante)
       if (currentImageIndex < photographerPhotos.length - 1) {
         currentImageIndex++;
-        loadCurrentImage();
+      } else {
+        currentImageIndex = 0;
       }
+      loadCurrentImage();
       break;
     case 'Escape':
       // Gérer la touche Échap (fermer la lightbox)
